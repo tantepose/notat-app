@@ -1,0 +1,64 @@
+
+:root {
+    --colorDark: #ff5e41;
+    --colorLight: #fffcd6;
+}
+
+body, html {
+    background-color: var(--colorDark);
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Nixie One', cursive;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#textbox {
+    width:80%; 
+    height: 80%;
+
+    background-color: var(--colorDark);
+    color: var(--colorLight);
+    font-size: 2em;
+    font-family: 'Nixie One', cursive;
+
+    resize: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+#textbox:focus {
+    outline: none;
+}
+
+#info {
+    position: fixed;
+    bottom: 0px;
+    right: 15px;
+    color: var(--colorLight);
+    cursor: pointer;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+  
+/* Track */
+::-webkit-scrollbar-track {
+    background: var(--colorDark);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--colorLight);
+    border-radius: 10px;
+}

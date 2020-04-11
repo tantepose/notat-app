@@ -1,0 +1,30 @@
+når bare går til note.monster: 
+    1. lag unik random phrase
+    2. lagre tekst på unik random phrase om noe skrives inn
+
+når går til note.monster/fit-work:
+    1. finne fit-work i databasen
+    2. laste inn teksten derfra 
+    3. lagre til samme sted om trenger 
+
+når går til note.monster/about: 
+    1. about! wow
+
+lagring: 
+    1. noe skrives? start nedtelling!
+    2. noe nytt skrevet på X sekunder? restart nedtelling!
+    3. ikke noe nytt skrevet på X sekunder? lagre! med indikasjon   
+
+databasen: 
+{
+    id: "xxxx",
+    url: "fit-work",
+    note: [
+        "dsadsadsadsa",
+        "dsadsadsadsa",
+        "SDsaddsadsadsa
+    ]
+}
+
+få alt etter \:
+window.location.pathname

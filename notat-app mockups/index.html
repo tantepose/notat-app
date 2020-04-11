@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>note.monster</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Nixie+One&display=swap" rel="stylesheet">
+
+    <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript" src="router.js"></script>
+
+    <script type="text/javascript" src="words.js"></script>
+    <script type="text/javascript" src="random-phrase.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <textarea id="textbox" onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}"></textarea>
+        <p id="info">/fixed-car</p>
+    </div>
+</body>
+</html>
