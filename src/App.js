@@ -1,8 +1,9 @@
 import React from 'react';
 import './index.css';
 
-import firebase from "./components/Firestore";
-
+import nouns from './components/nouns'
+import adjectives from './components/adjectives'
+import firebase from "./components/Firestore"
 
 class App extends React.Component {
 
@@ -22,6 +23,10 @@ class App extends React.Component {
   // initiating app
   componentDidMount () {
     // check path to deal with the correct note
+    if (window.location.pathname === "/") {
+      this.setRandomPath()
+    }
+
     const path = window.location.pathname.substr(1) // remove the slash
     console.log("now on path " + path + " 💡")
 
@@ -35,22 +40,36 @@ class App extends React.Component {
     console.log("Searching for... " + path)
     var docRef = db.collection("notes").doc(path)
 
-    docRef.get().then(function (doc) {
-      // console.log("Searching for " + this.state.path)
+    docRef.get().then( (doc) => {
       if (doc.exists) {
-          console.log("Document data:", doc.data())
-          console.log("Document name: " + doc.name)
-
+          console.log("Document found! 🥳", doc.data())
+          this.setState({
+            note: doc.data().text
+          })
       } else {
-          // doc.data() will be undefined in this case
-          console.log("No such document!");
+          console.log("No such document. 😐");
       }
-  }).catch(function(error) {
-      console.log("Error getting document:", error);
-  });
-  
+    }).catch(function(error) {
+        console.log("Error getting document. 😢", error);
+    });
+    
   }
   
+  setRandomPath = () => {
+    const randomPath = 
+      adjectives[Math.floor(Math.random() * adjectives.length)] +
+      "-" +
+      nouns[Math.floor(Math.random() * nouns.length)]
+    
+      window.location.pathname = randomPath
+  }
+
+  //  getRandomWord = (array) => {
+  //   const index = 
+  //   return array[index]
+  //   Math.floor(Math.random() * array.length)
+  // }
+
   // note updated
   updateInput = e => {
 
@@ -101,7 +120,7 @@ class App extends React.Component {
             name="note"
             placeholder=""
             onChange={this.updateInput}
-           
+            value={this.state.note}
         />
 
     <p id="info">{this.state.path}</p>
