@@ -12,7 +12,7 @@ class App extends React.Component {
 
     this.state = {
      note: "",
-     path: "nice-kjerre",
+     path: "",
      timerOn: false,
      timeLeft: 1000
     } 
@@ -22,12 +22,33 @@ class App extends React.Component {
   // initiating app
   componentDidMount () {
     // check path to deal with the correct note
-    console.log("now on path " + window.location.pathname + " 💡")
     const path = window.location.pathname.substr(1) // remove the slash
+    console.log("now on path " + path + " 💡")
 
+    // av en eller annen idiotgrunn vil ikke state settes, så dette blir bare rot
     this.setState({
       path: path
     })
+    console.log("State now: " + this.state.path)
+
+    const db = firebase.firestore()
+    console.log("Searching for... " + path)
+    var docRef = db.collection("notes").doc(path)
+
+    docRef.get().then(function (doc) {
+      // console.log("Searching for " + this.state.path)
+      if (doc.exists) {
+          console.log("Document data:", doc.data())
+          console.log("Document name: " + doc.name)
+
+      } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+      }
+  }).catch(function(error) {
+      console.log("Error getting document:", error);
+  });
+  
   }
   
   // note updated
