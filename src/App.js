@@ -7,7 +7,7 @@ import firebase from "./components/Firestore"
 
 class App extends React.Component {
 
-  // setup state
+  // set up state
   constructor() {
     super()
 
@@ -16,33 +16,35 @@ class App extends React.Component {
      path: "",
      timerOn: false,
      timeLeft: 1000
-    } 
-
+    }
   }
 
   // initiating app
   componentDidMount () {
-    // check path to deal with the correct note
-    if (window.location.pathname === "/") {
+    document.getElementById("note").focus();
+
+    if (window.location.pathname === "/") { // on root? can't have that
       this.setRandomPath()
     }
 
-    const path = window.location.pathname.substr(1) // remove the slash
-    console.log("now on path " + path + " 💡")
-
-    // av en eller annen idiotgrunn vil ikke state settes, så dette blir bare rot
+    // run getNote as callback to ensure state is properly set
     this.setState({
-      path: path
+      currentPath: window.location.pathname.substr(1)
+    }, () => {
+      this.checkNote()
     })
-    console.log("State now: " + this.state.path)
+  }
+  
+  // check if note exists, get it if it does
+  checkNote = () => {
+    console.log("Searching for... " + this.state.currentPath)
 
     const db = firebase.firestore()
-    console.log("Searching for... " + path)
-    var docRef = db.collection("notes").doc(path)
+    var docRef = db.collection("notes").doc(this.state.currentPath)
 
     docRef.get().then( (doc) => {
       if (doc.exists) {
-          console.log("Document found! 🥳", doc.data())
+          console.log("Document found! 🥳")
           this.setState({
             note: doc.data().text
           })
@@ -52,23 +54,16 @@ class App extends React.Component {
     }).catch(function(error) {
         console.log("Error getting document. 😢", error);
     });
-    
-  }
-  
-  setRandomPath = () => {
-    const randomPath = 
-      adjectives[Math.floor(Math.random() * adjectives.length)] +
-      "-" +
-      nouns[Math.floor(Math.random() * nouns.length)]
-    
-      window.location.pathname = randomPath
   }
 
-  //  getRandomWord = (array) => {
-  //   const index = 
-  //   return array[index]
-  //   Math.floor(Math.random() * array.length)
-  // }
+  // set a random path
+  setRandomPath = () => {
+    const randomPath = 
+      adjectives[Math.floor(Math.random() * adjectives.length)] + "-" +
+      nouns[Math.floor(Math.random() * nouns.length)]
+    
+    window.location.pathname = randomPath
+  }
 
   // note updated
   updateInput = e => {
@@ -84,12 +79,16 @@ class App extends React.Component {
     if (!this.state.timerOn) { // timer allready running?
       console.log("Timer starting... ⏳")
       this.setState({timerOn: true})
+
       var myTimer = setInterval(() => {
         if (this.state.timeLeft <= 0) { // X milliseconds without activity? reset timer, save note
-          this.setState({timeLeft: 1000 })
-          clearInterval(myTimer)
-          this.setState({timerOn: false})
           console.log("Time's up! ⏰")
+          this.setState({
+            timeLeft: 1000,
+            timerOn: false 
+          })
+          clearInterval(myTimer)
+          this.setState({})
           this.saveNote()
         } else { // time not up? proceed countdown
           this.setState({timeLeft: this.state.timeLeft - 100 })
@@ -100,7 +99,7 @@ class App extends React.Component {
 
   // creating or updating note in database
   saveNote = () => {
-    console.log("Saving note... 💾")
+    console.log("Saving note " + this.state.currentPath + ". 💾")
 
     const data = {
       text: this.state.note,
@@ -108,7 +107,7 @@ class App extends React.Component {
     }
 
     const db = firebase.firestore()
-    db.collection("notes").doc(this.state.path).set(data)
+    db.collection("notes").doc(this.state.currentPath).set(data)
   };
 
 
@@ -116,6 +115,7 @@ class App extends React.Component {
     return (
       <div className="container">
         <textarea
+            id="note"
             type="text"
             name="note"
             placeholder=""
@@ -123,7 +123,10 @@ class App extends React.Component {
             value={this.state.note}
         />
 
-    <p id="info">{this.state.path}</p>
+    <p id="info">
+      {this.state.timerOn ? "⏳ " : "✔ "}
+      {this.state.currentPath}
+      </p>
 
       </div>
     );
