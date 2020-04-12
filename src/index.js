@@ -1,12 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { Router } from "@reach/router"
+
+import App from './App';
+import About from './components/About'
+import AboutNote from './components/AboutNote'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <App path="/" />
+      <App path=":currentPath" />
+      <About path="about" />
+      <AboutNote path=":currentPath/about" />
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

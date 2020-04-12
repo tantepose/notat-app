@@ -21,15 +21,16 @@ class App extends React.Component {
 
   // initiating app
   componentDidMount () {
+    console.log("path fra props: " + this.props.notePath)
     document.getElementById("note").focus();
 
-    if (window.location.pathname === "/") { // on root? can't have that
+    if (this.props.currentPath === undefined) { // on root? can't have that
       this.setRandomPath()
     }
 
     // run getNote as callback to ensure state is properly set
     this.setState({
-      currentPath: window.location.pathname.substr(1)
+      currentPath: this.props.currentPath
     }, () => {
       this.checkNote()
     })
@@ -63,6 +64,7 @@ class App extends React.Component {
       nouns[Math.floor(Math.random() * nouns.length)]
     
     window.location.pathname = randomPath
+    this.props.currentPath = randomPath
   }
 
   // note updated
