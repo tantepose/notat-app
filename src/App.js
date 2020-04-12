@@ -15,6 +15,7 @@ class App extends React.Component {
 
     this.state = {
      note: {},
+     newNote: true,
      path: "",
      timerOn: false,
      timeLeft: 1000
@@ -23,18 +24,17 @@ class App extends React.Component {
 
   // initiating app
   componentDidMount () {
-    console.log("💡 this.props.currentPath: " + this.props.currentPath)
+    console.log("💡 Now on path /" + this.props.currentPath)
     document.getElementById("note").focus();
 
     if (this.props.currentPath === undefined) { // on root? can't have that
       this.setRandomPath()
     }
 
-    // run getNote as callback to ensure state is properly set
     this.setState({
       currentPath: this.props.currentPath
     }, () => {
-      this.getNote()
+      this.getNote() // run getNote as callback to ensure state is properly set
     })
   }
   
@@ -49,7 +49,8 @@ class App extends React.Component {
       if (doc.exists) {
           console.log("🥳 Document found!")
           this.setState({
-            note: doc.data()
+            note: doc.data(),
+            newNote: false
           })
       } else {
           console.log("😐 No such document.");
@@ -64,7 +65,7 @@ class App extends React.Component {
     console.log("🎲 Setting random path.")
 
     const randomPath = 
-      adjectives[Math.floor(Math.random() * adjectives.length)] + "-" +
+      adjectives[Math.floor(Math.random() * adjectives.length)] + "." +
       nouns[Math.floor(Math.random() * nouns.length)]
     
     window.location.pathname = randomPath
@@ -73,7 +74,6 @@ class App extends React.Component {
 
   // note updated
   updateInput = e => {
-
     //update state with updated text
     this.setState({ 
       note: {text: e.target.value} 
@@ -104,22 +104,42 @@ class App extends React.Component {
 
   // creating or updating note in database
   saveNote = () => {
-    console.log("💾 Saving note " + this.state.currentPath)
-
-    const data = {
-      text: this.state.note.text,
-      dateCreated: new firebase.firestore.Timestamp.now()
-    }
-
+    let data;
     const db = firebase.firestore()
-    db.collection("notes").doc(this.state.currentPath).set(data)
+    const timeNow = new firebase.firestore.Timestamp.now()
+
+    // note allready created, update old one
+    if (!this.state.newNote) { 
+      console.log("💾 Updating note: " + this.state.currentPath)
+
+      data = {
+        text: this.state.note.text,
+        dateUpdated: timeNow
+      }
+      
+      db.collection("notes").doc(this.state.currentPath).update(data)
+    } 
+    
+    // note not allready created, make a new one
+    else { 
+      console.log("💾 Creating note: " + this.state.currentPath)
+
+      data = {
+        text: this.state.note.text,
+        dateUpdated: timeNow,
+        dateCreated: timeNow
+      }
+
+      db.collection("notes").doc(this.state.currentPath).set(data)
+      this.setState({newNote: false}) // no longer a new note
+    }
   };
 
+  // clicks on note name
   infoClick = () => {
     console.log("klikk!")
-    navigate(`/${this.state.currentPath}/about`)
+    navigate(`/${this.state.currentPath}/about`, { state: { note: this.state.note } })
   }
-
 
   render() {
     return (
@@ -136,8 +156,9 @@ class App extends React.Component {
       <p 
         id="info"
         onClick={this.infoClick}>
-          {this.state.timerOn ? "⏳ " : "💾 "}
-          {this.state.currentPath}
+          {this.state.timerOn ? "⏳" : "🐠"}
+          {"/"+this.state.currentPath}
+
       </p>
 
       </div>
