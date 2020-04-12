@@ -12,6 +12,6 @@ var firebaseConfig = {
 
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig)
-  console.log("database online ✨")
+  console.log("✨ Database online!")
 
   export default firebase;

@@ -1,10 +1,11 @@
 :root {
-  --colorDark: #ff5e41;
+  --colorDark: #001824;
   --colorLight: #fffcd6;
 }
 
 body, html {
   background-color: var(--colorDark);
+  color: var(--colorLight);
   margin: 0;
   padding: 0;
   overflow: hidden;
