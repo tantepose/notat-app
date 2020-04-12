@@ -74,10 +74,8 @@ class App extends React.Component {
 
   // note updated
   updateInput = e => {
-    //update state with updated text
-    this.setState({ 
-      note: {text: e.target.value} 
-    })
+
+  this.state.note.text = e.target.value // needs fixing
 
     // countdown logic, save note after X seconds without activity
     this.setState({timeLeft: 1000 })
@@ -131,14 +129,22 @@ class App extends React.Component {
       }
 
       db.collection("notes").doc(this.state.currentPath).set(data)
-      this.setState({newNote: false}) // no longer a new note
+
+      this.setState({
+        newNote: false,
+        note: data
+      })
     }
   };
 
   // clicks on note name
   infoClick = () => {
     console.log("klikk!")
-    navigate(`/${this.state.currentPath}/about`, { state: { note: this.state.note } })
+    navigate(`/${this.state.currentPath}/about`, { 
+      state: { 
+        note: this.state.note 
+      } 
+    })
   }
 
   render() {
@@ -155,10 +161,12 @@ class App extends React.Component {
 
       <p 
         id="info"
-        onClick={this.infoClick}>
-          {this.state.timerOn ? "⏳" : "🐠"}
+        onClick={this.infoClick}
+      >
+        <i>
+          {this.state.timerOn ? "💾" : "🐠"}
           {"/"+this.state.currentPath}
-
+        </i>
       </p>
 
       </div>

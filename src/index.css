@@ -1,5 +1,5 @@
 :root {
-  --colorDark: #001824;
+  --colorDark: #0b111b;
   --colorLight: #fffcd6;
 }
 
@@ -46,8 +46,12 @@ textarea:focus {
   outline: none;
 }
 
+a {
+  color: var(--colorLight);
+}
+
 #info {
-  position: fixed;
+  position: fixed;  
   bottom: 0px;
   right: 15px;
   color: var(--colorLight);
@@ -80,6 +84,14 @@ textarea:focus {
     width:90%; 
     height: 90%;
     font-size: 1.5em;
+  }
+
+  #info {
+    bottom: unset;
+    top: 0px;
+    right: 0px;
+    margin: 5px;
+    font-size: .8em;
   }
 
 }
