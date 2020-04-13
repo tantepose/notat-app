@@ -50,6 +50,25 @@ a {
   color: var(--colorLight);
 }
 
+h1 {
+  overflow-wrap: anywhere;
+}
+
+button {
+  border: none;
+  font-size: 1em;
+  font-family: 'Nixie One', cursive;
+  padding: 10px;
+  background-color: var(--colorLight);
+  color: var(--colorDark);
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  margin: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #info {
   position: fixed;  
   bottom: 0px;
@@ -60,6 +79,7 @@ a {
 
 .content {
   text-align: center;
+  padding: 10px;
 }
 
 /* width */
@@ -91,7 +111,7 @@ a {
     top: 0px;
     right: 0px;
     margin: 5px;
-    font-size: .8em;
+    font-size: .9em;
   }
 
 }

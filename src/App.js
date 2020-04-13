@@ -16,7 +16,6 @@ class App extends React.Component {
     this.state = {
      note: {},
      newNote: true,
-     path: "",
      timerOn: false,
      timeLeft: 1000,
      status: "🎣"
@@ -149,7 +148,6 @@ class App extends React.Component {
 
   // clicks on note name
   infoClick = () => {
-    console.log("klikk!")
     navigate(`/${this.state.currentPath}/about`, { 
       state: { 
         note: this.state.note 
@@ -167,7 +165,14 @@ class App extends React.Component {
             placeholder=""
             onChange={this.updateInput}
             value={this.state.note.text}
-        />
+            placeholder={
+              this.state.currentPath ? 
+              "type to create /" + this.state.currentPath + " ..."
+            :
+            ""}
+        >
+
+        </textarea>
 
       <p 
         id="info"

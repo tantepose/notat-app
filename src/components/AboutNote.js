@@ -3,9 +3,9 @@ import React from "react"
 let AboutNote = (props) => 
     <div className="container">
         <div className="content">       
-            <p onClick={()=>navigator.clipboard.writeText(document.location)}>
-                 {"noble.fish/" + props.currentPath}
-            </p>
+            <h1 onClick={()=>navigator.clipboard.writeText("noble.fish/"+props.currentPath)}>
+                 {"noble.fish/"}<wbr/>{props.currentPath}
+            </h1>
 
             <p>
                 {props.location.state.note.dateCreated ? 
@@ -23,8 +23,20 @@ let AboutNote = (props) =>
                 }
             </p>
 
-            <p onClick={()=>window.history.back()}>
-                go back
+            <button 
+                onClick={()=>window.history.back()}
+            >
+                BACK
+            </button>
+
+            <button 
+                onClick={()=>window.location.pathname="/about"}
+            >
+                HELP
+            </button>
+
+            <p >
+                
             </p>
         </div>
     </div>
