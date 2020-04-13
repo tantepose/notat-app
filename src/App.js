@@ -34,6 +34,7 @@ class App extends React.Component {
     this.setState({
       currentPath: this.props.currentPath
     }, () => {
+      document.title = "noble.fish/" + this.props.currentPath
       this.getNote() // run getNote as callback to ensure state is properly set
     })
   }
