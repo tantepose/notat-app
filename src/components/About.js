@@ -32,7 +32,7 @@ let About = () =>
 
             <button
                 onClick={() => window.location.pathname="/"}>
-                CATCH A FISH
+                CATCH FRESH FISH
             </button>
 
         </div>
