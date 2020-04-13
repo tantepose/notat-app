@@ -32,13 +32,13 @@ let AboutNote = (props) =>
             <button 
                 onClick={()=>window.location.pathname="/"}
             >
-                CATCH FRESH FISH
+                MAKE NEW FISH
             </button>
 
             <button 
                 onClick={()=>window.location.pathname="/about"}
             >
-                HELP
+                ABOUT
             </button>
 
             <p >

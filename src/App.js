@@ -149,7 +149,7 @@ class App extends React.Component {
 
   // clicks on note name
   infoClick = () => {
-    navigate(`/${this.state.currentPath}/about`, { 
+    navigate(`/${this.state.currentPath}/info`, { 
       state: { 
         note: this.state.note 
       } 
@@ -168,7 +168,7 @@ class App extends React.Component {
             value={this.state.note.text}
             placeholder={
               this.state.currentPath ? 
-              "type to create /" + this.state.currentPath + " ..."
+              "type to create..."
             :
             ""}
         >

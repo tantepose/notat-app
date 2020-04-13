@@ -13,7 +13,7 @@ let About = () =>
                 your fish at this URL after 1 second of inactivity.
             </p>
             <p>
-                <b>🎣 how to catch a fresh fish:</b> <br/>
+                <b>🎣 how to create a fresh fish:</b> <br/>
                 #1. go to noble.fish<br/>
                 #2. type
             </p>
@@ -32,7 +32,12 @@ let About = () =>
 
             <button
                 onClick={() => window.location.pathname="/"}>
-                CATCH FRESH FISH
+                MAKE NEW FISH
+            </button>
+
+            <button
+                onClick={() => window.history.back()}>
+                BACK
             </button>
 
         </div>

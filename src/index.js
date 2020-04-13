@@ -14,7 +14,7 @@ ReactDOM.render(
       <App path="/" />
       <App path=":currentPath" />
       <About path="about" />
-      <AboutNote path=":currentPath/about" />
+      <AboutNote path=":currentPath/info" />
     </Router>
   </React.StrictMode>,
   document.getElementById('root')
