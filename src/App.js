@@ -18,7 +18,8 @@ class App extends React.Component {
      newNote: true,
      path: "",
      timerOn: false,
-     timeLeft: 1000
+     timeLeft: 1000,
+     status: "🎣"
     }
   }
 
@@ -41,6 +42,7 @@ class App extends React.Component {
   // check if note exists, get it if it does
   getNote = () => {
     console.log("🔍 Searching for... " + this.state.currentPath)
+    this.setState({status: "💾"})
 
     const db = firebase.firestore()
     var docRef = db.collection("notes").doc(this.state.currentPath)
@@ -50,13 +52,16 @@ class App extends React.Component {
           console.log("🥳 Document found!")
           this.setState({
             note: doc.data(),
-            newNote: false
+            newNote: false,
+            status: "🐠"
           })
       } else {
           console.log("😐 No such document.");
+          this.setState({status: "🎣"})
       }
     }).catch(function(error) {
         console.log("😢 Error getting document.", error);
+        this.setState({status: "❌"})
     });
   }
 
@@ -82,7 +87,11 @@ class App extends React.Component {
 
     if (!this.state.timerOn) { // timer allready running?
       console.log("⏳ Timer starting...")
-      this.setState({timerOn: true})
+
+      this.setState({
+        timerOn: true,
+        status: "💾"
+      })
 
       var myTimer = setInterval(() => {
         if (this.state.timeLeft <= 0) { // X milliseconds without activity? reset timer, save note
@@ -91,7 +100,8 @@ class App extends React.Component {
           clearInterval(myTimer)
           this.setState({
             timeLeft: 1000,
-            timerOn: false 
+            timerOn: false,
+            status: "🐠"
           })
         } else { // time not up? proceed countdown
           this.setState({timeLeft: this.state.timeLeft - 100 })
@@ -163,10 +173,8 @@ class App extends React.Component {
         id="info"
         onClick={this.infoClick}
       >
-        <i>
-          {this.state.timerOn ? "💾" : "🐠"}
+          {this.state.status}
           {"/"+this.state.currentPath}
-        </i>
       </p>
 
       </div>
