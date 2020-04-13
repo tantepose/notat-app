@@ -14,7 +14,7 @@ morsomt.monster
 
 todo:
 * sjekke om url-en ikke allerede er tatt
-* aboutNote
-* about
+* X aboutNote
+* X about
 * telling av visninger av note
 * utlisting av notes
