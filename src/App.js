@@ -2,8 +2,6 @@ import React from 'react';
 import firebase from "./components/Firestore"
 import { navigate } from "@reach/router"
 
-import './index.css';
-
 import nouns from './components/nouns'
 import adjectives from './components/adjectives'
 

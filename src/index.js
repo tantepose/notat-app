@@ -7,13 +7,15 @@ import { Router } from "@reach/router"
 import App from './App';
 import About from './components/About'
 import AboutNote from './components/AboutNote'
+import NoteList from './components/NoteList'
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <App path="/" />
-      <App path=":currentPath" />
+      <NoteList path="list" />
       <About path="about" />
+      <App path=":currentPath" />
       <AboutNote path=":currentPath/info" />
     </Router>
   </React.StrictMode>,
