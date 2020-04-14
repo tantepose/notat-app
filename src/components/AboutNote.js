@@ -13,9 +13,9 @@ let AboutNote = (props) =>
                 : 
                     "👶 not yet created"
                 }
-            </p>
-           
-            <p>
+
+                <br/>
+                
                 {props.location.state.note.dateUpdated ? 
                     "✍ updated at " + new Date(props.location.state.note.dateUpdated.seconds * 1000).toLocaleDateString("en-GB")    
                 : 
