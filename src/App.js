@@ -163,7 +163,6 @@ class App extends React.Component {
             id="note"
             type="text"
             name="note"
-            placeholder=""
             onChange={this.updateInput}
             value={this.state.note.text}
             placeholder={
