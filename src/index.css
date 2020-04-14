@@ -55,18 +55,30 @@ h1 {
 }
 
 button {
-  border: none;
-  font-size: 1em;
-  font-family: 'Nixie One', cursive;
-  padding: 10px;
+  border: 2px solid var(--colorLight);
   background-color: var(--colorLight);
   color: var(--colorDark);
+
+  font-size: 1em;
+  font-family: 'Nixie One', cursive;
+  font-weight: bold;
+
   cursor: pointer;
-  display: block;
-  width: 100%;
+
+  padding: 10px;
   margin: 10px;
   margin-left: auto;
   margin-right: auto;
+
+  display: block;
+  width: 100%;
+}
+
+button:hover {
+  background-color: var(--colorDark);
+  color: var(--colorLight);
+  
+
 }
 
 #info {
@@ -75,6 +87,10 @@ button {
   right: 15px;
   color: var(--colorLight);
   cursor: pointer;
+}
+
+#info:hover {
+  font-weight: bold;
 }
 
 .content {
