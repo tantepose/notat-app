@@ -77,8 +77,6 @@ button {
 button:hover {
   background-color: var(--colorDark);
   color: var(--colorLight);
-  
-
 }
 
 #info {
@@ -98,21 +96,44 @@ button:hover {
   padding: 10px;
 }
 
-/* width */
+.list {
+  text-align: center;
+  overflow: auto;
+
+  margin: 10px;
+}
+
+.list-item {
+  border: 2px solid var(--colorLight);
+  margin: 15px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.list-item:hover {
+  background-color: var(--colorLight);
+  color: var(--colorDark);
+  font-weight: bold;
+
+  /* border: 3px solid var(--colorLight); */
+}
+
+/* scroll bar styling */
+
 ::-webkit-scrollbar {
   width: 10px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
   background: var(--colorDark);
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
   background: var(--colorLight);
   border-radius: 10px;
 }
+
+/* breakpoints */
 
 @media screen and (max-width: 800px) {
 

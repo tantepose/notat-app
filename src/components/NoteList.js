@@ -9,7 +9,12 @@ class NoteList extends React.Component {
     super()
 
     this.state = {
-      notes: []
+      notes: [{
+        id: "loading...",
+        dateCreated: 0,
+        dateUpdated: 0,
+        text: "loading..."
+      }]
     }
   }
 
@@ -37,17 +42,21 @@ class NoteList extends React.Component {
   render() {
     return (
       <div className="container">
-          <p>last updated fishes 🐟🐠🐡</p>
+      <h1>✨ last updated</h1>
+        <div className="list">
+          
             {
               this.state.notes.map((note) => 
                 <Note 
                   name={note.id} 
-                  dateCreated={note.dateCreated}
-                  dateUpdated={note.dateUpdated}
+                  dateCreated={new Date(note.dateCreated.seconds * 1000).toLocaleDateString("en-GB")}
+                  dateUpdated={new Date(note.dateUpdated.seconds * 1000).toLocaleDateString("en-GB")}
                   text={note.text}
+                  key={note.id}
                 /> 
               )
             }
+        </div>
       </div>
     );
   }
