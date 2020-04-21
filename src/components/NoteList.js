@@ -42,7 +42,7 @@ class NoteList extends React.Component {
   render() {
     return (
       <div className="container">
-      <h1>✨ last updated</h1>
+      <h1><span role='img' aria-label='stars'>✨</span> last updated</h1>
         <div className="list">
           
             {

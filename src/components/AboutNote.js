@@ -9,17 +9,17 @@ let AboutNote = (props) =>
 
             <p>
                 {props.location.state.note.dateCreated ? 
-                    "👶 created at " + new Date(props.location.state.note.dateCreated.seconds * 1000).toLocaleDateString("en-GB")    
+                    "<span role='img' aria-label='baby'>👶</span> created at " + new Date(props.location.state.note.dateCreated.seconds * 1000).toLocaleDateString("en-GB")    
                 : 
-                    "👶 not yet created"
+                    "<span role='img' aria-label='baby'>👶</span> not yet created"
                 }
 
                 <br/>
                 
                 {props.location.state.note.dateUpdated ? 
-                    "✍ updated at " + new Date(props.location.state.note.dateUpdated.seconds * 1000).toLocaleDateString("en-GB")    
+                    "<span role='img' aria-label='writing'>✍</span> updated at " + new Date(props.location.state.note.dateUpdated.seconds * 1000).toLocaleDateString("en-GB")    
                 : 
-                    "✍ not yet updated"
+                    "<span role='img' aria-label='writing'>✍</span> not yet updated"
                 }
             </p>
 

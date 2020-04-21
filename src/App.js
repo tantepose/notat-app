@@ -157,28 +157,24 @@ class App extends React.Component {
   render() {
     return (
       <div className="container">
+
         <textarea
             id="note"
             type="text"
             name="note"
             onChange={this.updateInput}
             value={this.state.note.text}
-            placeholder={
-              this.state.currentPath ? 
-              "type to create..."
-            :
-            ""}
+            placeholder="type to create..."
         >
-
         </textarea>
 
-      <p 
-        id="info"
-        onClick={this.infoClick}
-      >
-          {this.state.status}
-          {"/"+this.state.currentPath}
-      </p>
+        <p 
+          id="info"
+          onClick={this.infoClick}
+        >
+            {this.state.status}
+            {"/"+this.state.currentPath}
+        </p>
 
       </div>
     );

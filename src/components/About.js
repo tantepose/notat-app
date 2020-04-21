@@ -13,19 +13,19 @@ let About = () =>
                 your fish at this URL after 1 second of inactivity.
             </p>
             <p>
-                <b>🎣 how to create a fresh fish:</b> <br/>
+                <b><span role='img' aria-label='fishing rod'>🎣</span> how to create a fresh fish:</b> <br/>
                 #1. go to noble.fish<br/>
                 #2. type
             </p>
 
             <p>
-                <b>💘 how to share a fish:</b> <br/>
+                <b><span role='img' aria-label='heart'>💘</span> how to share a fish:</b> <br/>
                 #1. copy the URL<br/>
                 #2. share the URL
             </p>
 
             <p>
-                <b>🍳 how to change a fish:</b> <br/>
+                <b><span role='img' aria-label='pan'>🍳</span> how to change a fish:</b> <br/>
                 #1. go to the URL<br/>
                 #2. type
             </p>

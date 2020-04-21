@@ -6,7 +6,7 @@ const Note = (props) =>
         onClick={()=>window.location.pathname=props.name}
     >
         <p className="list-title"><b>/{props.name}</b></p>
-        <p className="list-date">✍ {props.dateCreated}</p>
+        <p className="list-date"><span role='img' aria-label='writing'>✍</span> {props.dateCreated}</p>
         <p className="list-date"><i>"{props.text.substr(0, 40)}..."</i></p>
     </div>
 
