@@ -2,6 +2,8 @@
 
 https://noblefish.netlify.app/
 
+https://noblefish.netlify.app/list
+
 stack:
 * create-react-app
 * firestore / firebase
